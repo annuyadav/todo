@@ -1,0 +1,33 @@
+.account-setting {
+  padding: 15px 0;
+  .page-header {
+    font-size: 28px;
+    margin: 13px 0 35px;
+  }
+  .edit-user-block {
+    .user_image_lg {
+      border-radius: 4px;
+      box-shadow: 0 0 5px;
+      display: block;
+      overflow: hidden;
+      position: relative;
+      width: 200px;
+      img {
+        width: 100%;
+      }
+    }
+    .form-group {
+      label {
+        color: #444;
+        font-size: 14px;
+      }
+      input[type="email"], input[type="text"], input[type="password"] {
+        background: #fff none repeat scroll 0 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        color: #444;
+        width: 100%;
+      }
+    }
+  }
+}

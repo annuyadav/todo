@@ -1,0 +1,5 @@
+$('div.modal-content').html("<%=j render partial: 'todo_lists/form', locals: {todo_list: @todo_list} %>")
+$('#modal-window').modal('show');
+$('#modal-window').on('shown.bs.modal', function () {
+    $('#todo_list_name').focus();
+});

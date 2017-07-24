@@ -1,0 +1,4 @@
+$('#todo_lists').replaceWith("<%=j render partial: 'welcome/list_of_todos', locals: {todos: @todos} %>");
+$('.minimize').off('click').on('click', function () {
+    $(this).parents('.panel').children('.panel-body').slideToggle("slow");
+});

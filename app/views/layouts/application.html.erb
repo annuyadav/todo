@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Todo</title>
+  <meta name='description' content='Todo Application'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
+</head>
+<body>
+<%= render partial: 'snippets/header' %>
+<div class='container bg-white'>
+  <div class="row" id="main_content">
+    <%= yield %>
+  </div>
+</div>
+<div class='modal fade modal-window' id='modal-window'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<!-- Showing the loading indicator for ajax requests-->
+<div class="loading_animation">
+  <div class="loader">
+    <p id="loading-message">Loading...</p>
+  </div>
+</div>
+<%= render partial: 'snippets/flash_messages' unless flash.nil? %></body>
+</html>
+
+
+
+<!--<html>-->
+<!--<head>-->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Todo</title>
+  <meta name='description' content='Todo Application'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <!--<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>-->
+  <!--<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>-->
+  <!--<%= csrf_meta_tags %>-->
+  <!--<%= favicon_link_tag 'favicon.ico' %>-->
+<!--</head>-->
+<!--</html>-->

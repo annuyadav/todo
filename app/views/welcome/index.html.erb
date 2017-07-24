@@ -1,0 +1,47 @@
+<div class='move-bottom'>
+  <div class="col-lg-12">
+    <h2 class="page-header">Dashboard</h2>
+  </div>
+  <% if @todos.count.zero? %>
+      <div class="text-center no_project" id="no_project">
+        <div class="col-md-12">
+          <%= link_to new_todo_list_path, remote: true do %>
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              <i class="fa fa-file-pdf-o"></i>
+              <h4><b>Seems you are new.<br/>Click here to get started.</b></h4>
+          <% end %>
+        </div>
+        <br class="clearfix">
+      </div>
+  <% else %>
+      <div class="row">
+        <div class="col-xs-12 marginB10 text-right">
+          <%= link_to new_todo_list_path, remote: true, class: 'btn btn-primary' do %>
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              Add New ToDo List
+          <% end %>
+          <span class="right todo_select">
+          <%= select('todo_list', 'status', TodoList.pluck(:state).uniq.map { |state| [state] }.unshift(['All ToDos', nil]), {}, {class: 'form-control', id: 'select-state'}) %>
+          </span>
+        </div>
+      </div>
+      <%= render partial: 'welcome/list_of_todos', locals: {todos: @todos} %>
+  <% end %>
+</div>
+
+<script>
+    $('.minimize').off('click').on('click', function () {
+        $(this).parents('.panel').children('.panel-body').slideToggle("slow");
+    });
+
+    $('#select-state').on('change', function () {
+        _state = $(this).val();
+        var data_json = {state: _state};
+        $.ajax({
+            type: 'GET',
+            url: '<%= todo_lists_path %>',
+            data: data_json,
+            dataType: 'script'
+        })
+    })
+</script>

@@ -1,0 +1,2 @@
+$('li#item_<%= @todo_item.id %>').removeClass('<%= @todo_item.state_paths.to_states.collect{|x| "item_#{x.to_s}"}.join(" ") %>').addClass('item_<%= @todo_item.state %>');
+$('#check_item_<%= @todo_item.id %>').prop('checked', <%= @todo_item.state == 'done' %>);

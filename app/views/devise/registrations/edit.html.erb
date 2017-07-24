@@ -1,0 +1,72 @@
+<div class='move-bottom account-setting'>
+  <!-- Title -->
+  <div class="col-lg-12">
+    <h2 class="page-header"> Account settings </h2>
+  </div>
+  <!-- form for changing name and email-->
+  <div class="col-md-6 col-sm-6 edit-user-block">
+
+    <div class="form-group">
+      <div class="form-group user_image_lg" id="profile_pic_default">
+        <%= link_to_if current_user.profile_pic?, '', remove_profile_pic_path,
+                       method: :delete, class: "fa fa-minus-square del_img", data: {confirm: "Are you sure to remove your profile pic?"} %>
+        <%= image_tag current_user.profile_image, id: 'profile', title: 'Double click to change your profile picture' %>
+      </div>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: update_without_password_path, html: {method: :put}) do |f| %>
+
+        <div class="clearfix form-group"> <!--w3c validate--> </div>
+        <div class="form-group">
+          <%= f.label :first_name %><br/>
+          <%= f.text_field :first_name, autofocus: true, class: 'form-control', required: true, autofocus: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :last_name %><br/>
+          <%= f.text_field :last_name, class: 'form-control', required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %><br/>
+          <%= f.email_field :email, class: 'form-control', required: true %>
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+        <%= f.submit "Update", class: "btn btn-primary pull-right" %>
+    <% end %>
+
+    <div class="more-info-button">
+      <% unless current_user.confirmed_at? %>
+          <%= link_to 'Resend confirmation mail', user_confirmation_path(user: {:email => current_user.email}), :method => :post, class: "btn btn-default pull-left" %>
+      <% end %>
+    </div>
+  </div>
+
+  <!--form for changing password-->
+  <div class="col-md-6 col-sm-6 ">
+    <%= form_for(resource, as: resource_name, url: update_with_password_path, html: {method: :put}) do |f| %>
+
+        <div class="form-group">
+          <%= f.label :password, 'New password' %> <i>(leave blank if you don't want to change it)</i><br/>
+          <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation %><br/>
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
+          <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
+        </div>
+        <%= f.submit "Update my password", class: "btn btn-default pull-right" %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+    $('#profile_pic_default').dblclick(function () {
+        $('div.modal-content').html('<%=j render :partial => 'crop' %>');
+        select_profile_pic(<%= User::THUMBNAIL_WIDTH%>,<%= User::THUMBNAIL_HEIGHT%>);
+    });
+</script>
+

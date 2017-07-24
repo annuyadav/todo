@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title" id="myModalLabel">Share to User</h4>
+</div>
+<div class="modal-body">
+  <%= form_for(:user, as: :shared_user, url: :share_todo_list, remote: true) do |f| %>
+      <div class="field form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, placeholder: 'Enter Email of user', class: 'form-control', id: 'user_email' %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Share', class: "btn btn-default btn-primary pull-right", data: {disable_with: 'Saving...'} %>
+        <div class="clearfix"></div>
+      </div>
+  <% end %>
+</div>
+
+<script>
+    $(function () {
+        var availableEmails = <%== (User.all.collect{|user| {'label'=> user.email, 'value'=> user.email}}.uniq).to_json %>;
+        $("#user_email").autocomplete({
+            minLength: 1,
+            source: availableEmails,
+            select: function (event, ui) {
+                console.log(ui.item);
+                $('#user_email').val(ui.item.label);
+            }
+        });
+    });
+</script>

@@ -1,0 +1,27 @@
+<div class="crop_div">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Select profile picture</h4>
+  </div>
+  <div class="modal-body">
+    <div class="cropper-example-2">
+      <img src="" style="display: none; height: 100%; width: 100%;" id="crop_profile_pic">
+    </div>
+    <%= form_for(resource, as: resource_name, url: crop_profile_pic_path, :html => {:multipart => true}, :remote => true, :method => 'patch') do |f| %>
+        <%= f.file_field :profile_pic, id: 'profile_photo_upload', accept: "image/png,image/jpeg,image/gif", class: "pull-left", style: "display: none;" %>
+        <%= hidden_field_tag 'x' %>
+        <%= hidden_field_tag 'y' %>
+        <%= hidden_field_tag 'width' %>
+        <%= hidden_field_tag 'height' %>
+        <div class="modal-footer">
+          <div class="row">
+            <%= f.submit 'Select', class: 'btn btn-primary', id: 'submit_crop' %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+
+</script>

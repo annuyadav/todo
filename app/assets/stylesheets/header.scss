@@ -1,0 +1,176 @@
+#header {
+  height: 66px;
+  z-index: 1000;
+
+  .navbar {
+    background: #004273 none repeat scroll 0 0;
+    border-bottom: 1px solid #004273;
+    border-radius: 0;
+    box-shadow: none;
+    color: #3f3f3f;
+    margin-bottom: 0;
+    min-height: 66px;
+    padding-left: 20px;
+    padding-right: 0;
+    position: relative;
+    .navbar-brand {
+      text-align: center;
+      color: #353535;
+      font-size: 30px;
+      font-weight: 700;
+      height: 65px;
+      line-height: 62px;
+      padding: 0 20px;
+    }
+
+    .navbar-toggle {
+      line-height: 16px;
+      font-size: 12px;
+      color: #555;
+      padding: 9px 10px;
+      border: 1px solid;
+      border-radius: 2px;
+      text-shadow: 0 1px 0 white;
+      border-color: #CCC #CCC #AAA;
+      background-color: #E0E0E0;
+      box-shadow: inset 0 0 1px white;
+      background-image: linear-gradient(to bottom, #FAFAFA 0, #DCDCDC 100%);
+      text-decoration: none;
+      position: absolute;
+      right: 25px;
+      top: 7px;
+    }
+
+    .nav {
+      margin: 15px 10px 5px 20px;
+      li {
+        display: block;
+        float: left;
+        margin-right: 20px;
+        position: relative;
+        a {
+          border-radius: 20px;
+          box-shadow: none;
+          color: #fff;
+          text-shadow: none;
+          padding: 8px 10px;
+          span {
+            //            color: #fff;
+          }
+          &:hover, &:active, &:focus {
+            background: #3473ab none repeat scroll 0 0;
+            border-color: #276aa4;
+            box-shadow: none;
+            color: #fff;
+            text-decoration: none;
+            outline: none;
+          }
+          &.menu-option {
+            background: #3c7eb8 none repeat scroll 0 0;
+            border: 1px solid #5193cd;
+          }
+        }
+      }
+      .avatar {
+        padding-left: 44px;
+        position: relative;
+      }
+      .image {
+        border-radius: 20px;
+        height: 32px;
+        left: 1px;
+        position: absolute;
+        top: 1px;
+        width: 36px;
+      }
+      .dropdown-menu {
+        background: #4188af none repeat scroll 0 0 padding-box;
+        border: 1px solid #4188af;
+        border-radius: 2px;
+        box-shadow: 0 1px 0 white;
+        float: left;
+        font-size: 12px;
+        left: 0;
+        list-style: outside none none;
+        margin: 0;
+        min-width: 160px;
+        padding: 4px;
+        position: absolute;
+        top: 55px;
+        z-index: 9999;
+        &:before {
+          border-color: rgba(65, 136, 175, 0) rgba(65, 136, 175, 0) #4188af;
+          border-image: none;
+          border-style: solid;
+          border-width: 15px;
+          bottom: 100%;
+          content: " ";
+          height: 0;
+          margin-left: -15px;
+          pointer-events: none;
+          position: absolute;
+          right: 7px;
+          width: 0;
+        }
+        .menu {
+          background: #fff none repeat scroll 0 0;
+          border: 1px solid #c4c4c4;
+          border-radius: 2px;
+          display: block;
+          float: left;
+          margin-bottom: 0;
+          min-width: 150px;
+          padding: 0 10px;
+          margin-right: 0;
+          ul {
+            list-style: outside none none;
+            margin: 0;
+            padding-left: 0;
+          }
+          li {
+            border-bottom: 1px solid #ebebeb;
+            line-height: 14px;
+            margin: 0;
+            padding-bottom: 8px;
+            padding-top: 10px;
+            width: 100%;
+          }
+          a {
+            clear: both;
+            color: #333;
+            display: inline-block;
+            font-weight: normal;
+            line-height: 14px;
+            padding: 5px 0 5px 5px;
+            white-space: normal;
+            width: 98%;
+            span {
+              margin-right: 15px;
+            }
+            &:hover {
+              background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+              border: medium none;
+              box-shadow: none;
+              color: #3f3f3f;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .non-usernav {
+      a {
+        background: #3c7eb8 none repeat scroll 0 0;
+        border: 1px solid #5193cd;
+        &:hover, &:active, &:focus {
+          background: #3473ab none repeat scroll 0 0;
+          border-color: #276aa4;
+          box-shadow: none;
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+$('#list_group_<%= @todo_list.id %>').replaceWith('<%=j render partial: 'todo_lists/todo_items_list', locals: {todo_list: @todo_list} %>');
+$('#check_list_<%= @todo_list.id %>').prop('checked', <%= @todo_list.state == 'done' %>);
+$('p#list_status_<%= @todo_list.id %>').removeClass('<%= @todo_list.state_paths.to_states.collect{|x| "status_#{x.to_s}"}.join(" ") %>').addClass('status_<%= @todo_list.state %>');

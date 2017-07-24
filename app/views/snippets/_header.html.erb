@@ -1,0 +1,51 @@
+<div id="header">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <%= link_to(image_tag("logo.png"), root_path, class: "navbar-brand") %>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="glyphicon glyphicon-arrow-4"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-right usernav">
+        <li>
+          <%= link_to root_url, class: 'menu-option' do %>
+              <span class="glyphicon glyphicon-home"></span>
+              <span class="txt">  Home</span>
+          <% end %>
+        </li>
+        <li class="dropdown menu-option">
+          <a href="javascript:void(0);" class="dropdown-toggle avatar menu-option" data-toggle="dropdown">
+            <%= image_tag current_user.stamp_image, class: "image user_profile_pic" %>
+            <span class="txt"><%= current_user.email %></span>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="menu">
+              <ul>
+                <li>
+                  <%= link_to edit_user_registration_path do %>
+                      <span class="glyphicon glyphicon-user"></span>
+                      View Profile
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                      <span class="glyphicon glyphicon-log-out"></span>
+                      Sign Out
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!--/.nav-collapse -->
+  </nav>
+  <!--/navbar -->
+
+</div>
+<!--End #header -->

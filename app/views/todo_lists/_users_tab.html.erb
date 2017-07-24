@@ -1,0 +1,23 @@
+<div role="tabpanel" class="tab-pane" id="shared_users">
+  <% if todo_list.owner == current_user %>
+      <div class="<%= todo_list.users.count.zero? ? 'text-right form-group text-center' : 'text-right form-group' %>">
+        <%= link_to 'Share', new_user_todo_list_path(todo_list),
+                    class: 'btn btn-primary btn-lg', remote: true %>
+
+      </div>
+  <% end %>
+
+  <div class="col-md-12" style="display: <%= todo_list.users.count.zero? ? 'visible' : 'none' %>">
+    <div class="no_users">
+      <div class="text-center">
+        <div class="clearfix"></div>
+        <span class="glyphicon glyphicon-hand-up"></span>
+        <p>No collaborators yet. Please add some collaborators in your project. </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="shared_users">
+    <%= render partial: 'todo_lists/shared_user', collection: todo_list.users, as: :user, locals: {todo_list: todo_list} %>
+  </div>
+</div>

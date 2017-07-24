@@ -1,0 +1,26 @@
+<ul class="list-group sortable" id="list_group_<%= todo_list.id %>" data-id="<%= todo_list.id %>">
+  <% unless todo_list.todo_items.count.zero? %>
+      <p class="list_status status_<%= todo_list.state %>" id="list_status_<%= todo_list.id %>">
+        <input type="checkbox" id="check_list_<%= todo_list.id %>" <%= todo_list.state == 'done' ? 'checked=true' : '' %> onchange="mark_list_update(this);">
+        Done </p>
+  <% end %>
+  <% todo_list.todo_items.each do |item| %>
+      <li class="list-group-item to_do_items item_<%= item.state %>" id="item_<%= item.id %>" data-id="<%= item.id %>">
+        <input type="checkbox" id="check_item_<%= item.id %>" class="chk_item" <%= item.state == 'done' ? 'checked=true' : '' %>" onchange="updateItem(this,'<%= item.id %>');">
+
+        <p><%= item.description %></p>
+        <%= link_to delete_todo_item_todo_list_path(todo_list, item), method: :delete, class: 'pull-right', data: {confirm: "Are you sure, you can't undo this action?"}, remote: true do %>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <% end %>
+      </li>
+  <% end %>
+</ul>
+
+<script>
+  $(document).ready(function(){
+    var _elements = $('.list-group-item.to_do_items');
+    set_positions(_elements);
+    sort_list(_elements);
+  });
+</script>
+

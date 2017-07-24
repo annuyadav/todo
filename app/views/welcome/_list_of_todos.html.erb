@@ -1,0 +1,53 @@
+<div class="todo_list_container" id="todo_lists">
+  <div class="col-md-12" style="display: <%= todos.count.zero? ? 'visible' : 'none' %>">
+    <div class="no_items">
+      <div class="text-center">
+        <div class="clearfix"></div>
+        <span class="glyphicon glyphicon-tasks"></span>
+
+        <p>No ToDo list available. </p>
+      </div>
+    </div>
+  </div>
+
+  <% todos.each do |to_do| %>
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4>
+              <%= link_to to_do.name, todo_list_path(to_do), remote: true %>
+            </h4>
+            <a class="minimize" href="javascript:void(0);"></a>
+          </div>
+          <div class="panel-body">
+            <p><%= to_do.description %><span class="right status_<%= to_do.state %>"><%= to_do.state %></span></p>
+            <p><b>owner: </b> <%= to_do.owner.full_name %></p>
+            <ul class="list-group sortable" data-id="<%= to_do.id %>" id="todo_list_<%= to_do.id %>">
+              <% if to_do.todo_items.count.zero? %>
+                  <li class="list-group-item disabled"> No items in list.</li>
+              <% else %>
+                  <!--<h5>ToDo Items:</h5>-->
+                  <% to_do.todo_items.each do |item| %>
+                      <li class="list-group-item item_<%= item.state %>" data-id="<%= item.id %>" id="item_<%= item.id %>">
+                        <%= item.description %>
+                        <%= link_to delete_todo_item_todo_list_path(to_do, item), method: :delete, class: 'pull-right', data: {confirm: "Are you sure, you can't undo this action?"}, remote: true do %>
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <% end %>
+                      </li>
+                  <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    var _elements = $('.list-group.sortable .list-group-item');
+    set_positions(_elements);
+    sort_list(_elements);
+  });
+</script>

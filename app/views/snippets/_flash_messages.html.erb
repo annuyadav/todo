@@ -1,0 +1,12 @@
+<div id="flash_msg">
+  <script>
+      var notice_key = '<%= flash.first[0] rescue ''%>';
+      var notice_msg = '<%= flash.first[1] rescue ''%>';
+      $(function () {
+          if (notice_msg != '' && notice_key != '') {
+              display_notice(notice_key, notice_msg)
+              notice_key = notice_msg = ''
+          }
+      })
+  </script>
+</div>

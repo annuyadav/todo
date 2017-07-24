@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Todo</title>
+  <meta name='description' content='Todo Application'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
+</head>
+<body class="dv_devise_container">
+<%= render partial: 'snippets/app_header' %>
+<div class="container">
+  <%= yield %>
+</div>
+</div>
+<%= render partial: 'snippets/flash_messages' unless flash.nil? %>
+</body>
+</html>
+

@@ -1,0 +1,59 @@
+<div role="tabpanel" class="tab-pane active" id="todo_items">
+  <div class="col-md-12" style="display: <%= todo_list.todo_items.count.zero? ? 'visible' : 'none' %>">
+    <div class="text-right form-group text-center">
+      <%= link_to 'Add ToDo Item', new_todo_item_todo_list_path(todo_list),
+                  class: 'btn btn-primary btn-lg', remote: true %>
+    </div>
+    <div class="no_items">
+      <div class="text-center">
+        <div class="clearfix"></div>
+        <span class="glyphicon glyphicon-list"></span>
+
+        <p>No items in list. Please add some. </p>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: 'todo_lists/todo_items_list', locals: {todo_list: todo_list} %>
+</div>
+
+<script>
+    function updateItem(element, id) {
+        var todo_item_path = '<%= update_todo_item_todo_list_path(todo_list, '__todo_item_id__')%>'.replace("__todo_item_id__", id);
+        _data = {};
+        if ($(element).is(":checked")) {
+            _data['event'] = 'complete'
+        } else {
+            _data['event'] = 'assign'
+        }
+        updateList();
+        $.ajax({
+            type: 'GET',
+            url: todo_item_path,
+            data: _data,
+            dataType: 'script'
+        })
+    }
+
+    function updateList() {
+        if ($('.chk_item:checked').length == $('.chk_item').length) {
+            $('#check_list_<%= todo_list.id %>').prop('checked', true);
+        }
+    }
+
+    function mark_list_update(element) {
+        var todo_item_path = '<%= update_state_todo_list_path(todo_list)%>';
+        _data = {};
+        if ($(element).is(":checked")) {
+            _data['event'] = 'complete'
+        } else {
+            _data['event'] = 'assign'
+        }
+        $.ajax({
+            type: 'GET',
+            url: todo_item_path,
+            data: _data,
+            dataType: 'script'
+        })
+    }
+</script>

@@ -1,0 +1,14 @@
+<div class="todo_list_container">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#todo_items" aria-controls="home" role="tab" data-toggle="tab">ToDo Items</a></li>
+    <li role="presentation">
+      <a href="#shared_users" aria-controls="profile" role="tab" data-toggle="tab">Shared Users</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <%= render partial: 'todo_lists/items_tab', locals: {todo_list: todo_list} %>
+    <%= render partial: 'todo_lists/users_tab', locals: {todo_list: todo_list} %>
+  </div>
+
+</div>

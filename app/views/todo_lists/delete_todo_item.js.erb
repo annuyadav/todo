@@ -1,0 +1,11 @@
+<% if @todo_item.destroy %>
+$('#item_<%= @todo_item.id %>').remove();
+display_notice('notice', 'ToDo item deleted.');
+<% else %>
+display_notice('notice', 'Unable to delete ToDo item.');
+<% end %>
+
+<% if @todo_list.todo_items.count.zero? %>
+$('#todo_items').replaceWith("<%=j render partial: 'todo_lists/items_tab', locals: {todo_list: @todo_list} %>");
+$('#todo_list_<%= @todo_list.id %>').html('<li class="list-group-item disabled"> No items in list.</li>')
+<% end %>
